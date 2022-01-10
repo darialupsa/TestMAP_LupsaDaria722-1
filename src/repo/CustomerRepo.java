@@ -4,9 +4,7 @@ import entities.CompanySize;
 import entities.Customer;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class CustomerRepository {
     private ArrayList<Customer> customerRepository;
@@ -43,4 +41,19 @@ public class CustomerRepository {
             br.close();
         }
     }
+    public void sortByEmployes(){
+        customerRepository.sort(Comparator.comparing(customer -> customer.getNrOfEmployes()));
+        Collections.reverse(customerRepository);
+    }
+
+    public void addSortedCustomers() throws FileNotFoundException, UnsupportedEncodingException {
+        this.sortByEmployes();
+        PrintWriter writer = new PrintWriter(" kundensortiert.txt", "UTF-8");
+        for(Customer customer:customerRepository){
+            String str=""+customer.getId()+","+customer.getCompanyName()+","+customer.getCompanySize()+","+customer.getNrOfEmployes()+","+customer.getIncomeFCustomer()+","+customer.getLocation();
+            writer.println(str);
+        }
+
+    }
 }
+
