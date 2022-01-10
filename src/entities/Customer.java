@@ -1,25 +1,27 @@
 package entities;
 
+public enum CompanySize{
+    Small, Medium, Large
+}
 public class Customer {
     private Integer id;
     private String companyName;
-    private enum companySize{
-        Small, Medium, Large
-    }
+    private CompanySize companySize;
     private Integer nrOfEmployes;
     private Long incomeFCustomer;
     private String location;
 
-    public Customer(Integer id, String companyName, Integer nrOfEmployes, Long incomeFCustomer, String location) {
+    public Integer getId() {
+        return id;
+    }
+
+    public Customer(Integer id, String companyName, CompanySize companySize, Integer nrOfEmployes, Long incomeFCustomer, String location) {
         this.id = id;
         this.companyName = companyName;
+        this.companySize = companySize;
         this.nrOfEmployes = nrOfEmployes;
         this.incomeFCustomer = incomeFCustomer;
         this.location = location;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public void setId(Integer id) {
@@ -32,6 +34,14 @@ public class Customer {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public CompanySize getCompanySize() {
+        return companySize;
+    }
+
+    public void setCompanySize(CompanySize companySize) {
+        this.companySize = companySize;
     }
 
     public Integer getNrOfEmployes() {
